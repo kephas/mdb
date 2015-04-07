@@ -1,0 +1,14 @@
+<div class="row" ng-controller="MoviesCtrl">
+  <div class="col-sm-2">
+    <input ng-model="search.title" name="search"/>
+  </div>
+  <div class="col-sm-10">
+    <table class="table">
+      <tr ng-repeat="(key, movie) in movies">
+        <td><img class="img-responsive" ng-src="{{image.base_url + image.backdrop_size + movie.backdrop_path }}"/></td>
+        <td data-id={{movie.id}}>{{movie.title}}</td>
+        <td>{{movie.vote_average}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
