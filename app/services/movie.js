@@ -6,7 +6,7 @@
       return {
         trending: function(url, page) {
           return $resource(url,
-                           { api_key: $rootScope.api_key },
+                           { api_key: $rootScope.api.key },
                            { query:
                              { method: 'GET' }
                            })

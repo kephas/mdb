@@ -5,24 +5,26 @@
   <title>My AngularJS App</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/app.css"/>
   <script src="bower_components/bootstrap-without-jquery/bootstrap3/bootstrap-without-jquery.js"></script>
 </head>
 <body ng-app="myApp">
-  <nav class="navbar navbar-default" role="navigation">
+  <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="navbar-header">
       <a class="navbar-brand" href="#/">MovieDB</a>
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#/">movies</a></li>
+        <li class="active"><a href="#/">Top rated</a></li>
+        <li><a href="#/popular">Popular</a></li>
+        <li><a href="#/now_playing">Now Playing</a></li>
+        <li><a href="#/upcoming">Upcoming</a></li>
       </ul>
     </div>
   </nav>
 
   <div class="container" ng-view></div>
-
-  <!-- <div>Angular seed app: v<span app-version></span></div> -->
 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>

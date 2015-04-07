@@ -8,7 +8,7 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-    when('/', {
+    when('/:genre?', {
       templateUrl: 'views/movies.html',
       controller:  'MoviesCtrl'
     })

@@ -1,0 +1,47 @@
+body {
+  background-color: #444;
+}
+
+.container {
+   margin-top: 60px;
+}
+
+movie {
+  display: inline-block;
+  text-align: center;
+  margin: 10px 10px;
+}
+
+movie img {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4)
+}
+
+movie img, movie span {
+  transition: all 500ms ease 0s;
+}
+
+movie span {
+  color: black;
+  font-size: 15px;
+  opacity: 0;
+  position: relative;
+  top: -100px;
+}
+
+movie a {
+    text-decoration: none;
+}
+
+movie:hover img {
+    opacity: 0.2;
+}
+
+movie:hover span {
+    opacity: 1;
+}
+
+movie .info {
+  padding: 0 10px;
+}
