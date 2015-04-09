@@ -3,6 +3,17 @@
 (function() {
   angular.module('myAppControllers', ['myAppServices']).
     controller('MoviesCtrl', [ '$rootScope', '$scope', '$routeParams', 'Movie', 'Config', function($rootScope, $scope, $routeParams, Movie, Config) {
+      function in_groups_of(data, size) {
+        size = size || 3;
+        var results = [];
+
+        for(var i = 0, len = data.length; i < len; i += size) {
+          results.push(data.slice(i, i + size))
+        }
+
+        return results;
+      }
+
       $scope.movies  = {}
       $scope.image   = {}
       $rootScope.api = {
@@ -20,6 +31,7 @@
       Movie.trending($rootScope.api.url + 'movie/' + ($routeParams.genre || "top_rated"))
         .query(function(data) {
           $scope.movies = data.results;
+          $scope.moviesInGroups = in_groups_of(data.results)
         });
     }]);
 

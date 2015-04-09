@@ -6,12 +6,6 @@ body {
    margin-top: 60px;
 }
 
-movie {
-  display: inline-block;
-  text-align: center;
-  margin: 10px 10px;
-}
-
 movie img {
   width: 100%;
   border-radius: 4px;

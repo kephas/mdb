@@ -1,10 +1,10 @@
-<div class="row" ng-controller="MoviesCtrl">
-  <div class="col-sm-12">
+<div ng-controller="MoviesCtrl">
+  <div class="form-group">
     <input ng-model="search.title" name="search" placeholder="search movies" class="form-control"/>
   </div>
 
-  <div class="col-sm-12">
-    <movie ng-repeat="(key, movie) in movies | filter:search">
+  <div ng-repeat="(_, movieList) in moviesInGroups | filter:search" class="row">
+    <movie class="col-sm-4" ng-repeat="(_, movie) in movieList">
       <a href="#" target="blank">
         <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}"/>
         <div class="info clearfix">
