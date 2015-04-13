@@ -39,3 +39,7 @@ movie:hover span {
 movie .info {
   padding: 0 10px;
 }
+
+.genres {
+  color: #fff;
+}

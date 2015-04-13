@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  angular.module('myAppServices').
+  angular.module('myApp.Services').
     factory('Genre', Genre);
 
   Genre.$inject = ['$resource', '$rootScope'];
@@ -9,35 +9,29 @@
 
   function Genre($resource, $rootScope) {
     return {
-      all: function(url) {
+      all: function(domain, url) {
         return $resource(url,
                          {
-                           api_key: $rootScope.api.key
+                           api_key: API_CONSTANTS.tmdb.api_key
                          },
                          {
                            query: {
                              method: 'GET'
                            }
                          }
-                        )
-      },
+                        )},
 
-      find: function(url, genre_ids) {
+      find: function(domain, url, params) {
+        params = params || {}
+        params["api_key"] = API_CONSTANTS.tmdb.api_key
         return $resource(url,
-                         {
-                           api_key: $rootScope.api.key
-                         },
+                         params,
                          {
                            query: {
-                             method: 'GET',
-                             params: {
-                               with_genres: genre_ids.join(",")
-                             }
+                             method: 'GET'
                            }
-                         }
-                        )
+                         });
       }
     }
   }
-
 }());
