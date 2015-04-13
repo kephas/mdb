@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  angular.module('myAppServices', ['ngResource'])
+  angular.module('myAppServices')
     .factory('Movie', ['$resource', '$rootScope', function($resource, $rootScope) {
       return {
         trending: function(url, page) {
