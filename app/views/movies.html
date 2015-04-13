@@ -1,17 +1,26 @@
-<div ng-controller="MoviesCtrl">
-  <div class="form-group">
-    <input ng-model="search.title" name="search" placeholder="search movies" class="form-control"/>
-  </div>
+<div class="row">
+  <section class="col-sm-1">
+    <div class="checkbox genres">
+      <label ng-repeat="(_, genre) in filter.genres">
+        <input type="checkbox" value="{{genre.id}}">{{genre.name}}</input>
+      </label>
+    </div>
+  </section>
+  <section class="col-sm-11">
+    <div class="form-group">
+      <input ng-model="search.title" name="search" placeholder="search movies" class="form-control"/>
+    </div>
 
-  <div ng-repeat="(_, movieList) in moviesInGroups | filter:search" class="row">
-    <movie class="col-sm-4" ng-repeat="(_, movie) in movieList">
-      <a href="#" target="blank">
-        <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}"/>
-        <div class="info clearfix">
-          <span class="pull-left">{{movie.title}}</span>
-          <span class="pull-right">{{movie.vote_average}}</span>
-        </div>
-      </a>
-    </movie>
-  </div>
+    <div ng-repeat="(_, movieList) in moviesInGroups | filter:search" class="row">
+      <movie class="col-sm-4" ng-repeat="(_, movie) in movieList">
+        <a href="#" target="blank">
+          <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}"/>
+          <div class="info clearfix">
+            <span class="pull-left">{{movie.title}}</span>
+            <span class="pull-right">{{movie.vote_average}}</span>
+          </div>
+        </a>
+      </movie>
+    </div>
+  </section>
 </div>

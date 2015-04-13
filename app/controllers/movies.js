@@ -1,8 +1,8 @@
 'use strict';
 
 (function() {
-  angular.module('myAppControllers', ['myAppServices']).
-    controller('MoviesCtrl', [ '$rootScope', '$scope', '$routeParams', 'Movie', 'Config', function($rootScope, $scope, $routeParams, Movie, Config) {
+  angular.module('myAppControllers').
+    controller('MoviesCtrl', [ '$rootScope', '$scope', '$routeParams', 'Movie', 'Config', 'Genre', function($rootScope, $scope, $routeParams, Movie, Config, Genre) {
       function in_groups_of(data, size) {
         size = size || 3;
         var results = [];
@@ -16,6 +16,10 @@
 
       $scope.movies  = {}
       $scope.image   = {}
+      $scope.filter  = {
+        genres: [],
+        rating: null
+      }
       $rootScope.api = {
         key: "2e329c92227ed8be07944ae447c9426f",
         url: "https://api.themoviedb.org/3/"
@@ -28,10 +32,14 @@
         }
       });
 
-      Movie.trending($rootScope.api.url + 'movie/' + ($routeParams.genre || "top_rated"))
-        .query(function(data) {
+      Movie.trending($rootScope.api.url + 'movie/' + ($routeParams.genre || "top_rated")).
+        query(function(data) {
           $scope.movies = data.results;
           $scope.moviesInGroups = in_groups_of(data.results)
+        });
+      Genre.all($rootScope.api.url + 'genre/movie/list').
+        query(function(data) {
+          $scope.filter.genres = data.genres;
         });
     }]);
 
