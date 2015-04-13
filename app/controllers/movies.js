@@ -1,45 +1,50 @@
 'use strict';
 
 (function() {
-  angular.module('myApp.Controllers').
-    controller('MoviesCtrl',
-               ['$rootScope', '$scope', '$routeParams', 'Movie', 'TMDBConfig', 'Genre', 'API_CONSTANTS',
-                function($rootScope, $scope, $routeParams, Movie, TMDBConfig, Genre, API_CONSTANTS) {
-                  function in_groups_of(data, size) {
-                    size = size || 3;
-                    var results = [];
+  angular.module('myApp.controllers').
+    controller('MoviesCtrl', MoviesController);
 
-                    for(var i = 0, len = data.length; i < len; i += size) {
-                      results.push(data.slice(i, i + size))
-                    }
+  MoviesController.$inject = ['$rootScope', '$scope', '$routeParams', 'Movie', 'TMDBConfig', 'Genre', 'API_CONSTANTS']
 
-                    return results;
-                  }
+  function MoviesController($rootScope, $scope, $routeParams, Movie, TMDBConfig, Genre, API_CONSTANTS) {
+    $scope.movies  = {}
+    $scope.image   = {}
+    $scope.filter  = {
+      genres: [],
+      rating: null
+    }
 
-                  $scope.movies  = {}
-                  $scope.image   = {}
-                  $scope.filter  = {
-                    genres: [],
-                    rating: null
-                  }
+    var in_groups_of = function(data, size) {
+      size = size || 3;
+      var results = [];
 
-                  TMDBConfig.get({ api_key: API_CONSTANTS.tmdb.api_key }, function(data) {
-                    $scope.image = {
-                      base_url: data.images.base_url,
-                      backdrop_size: data.images.backdrop_sizes[0]
-                    }
-                  });
+      for(var i = 0, len = data.length; i < len; i += size) {
+        results.push(data.slice(i, i + size))
+      }
 
-                  Movie.trending("tmdb", API_CONSTANTS.tmdb.api_url + 'movie/' + ($routeParams.genre || "top_rated")).
-                    query(function(data) {
-                      $scope.movies = data.results;
-                      $scope.moviesInGroups = in_groups_of(data.results)
-                    });
+      return results;
+    }
+    , movies_url = API_CONSTANTS.tmdb.api_url + 'movie/' + ($routeParams.genre || "top_rated")
+    , genres_url = API_CONSTANTS.tmdb.api_url + 'genre/movie/list';
 
-                  Genre.all("tmdb",API_CONSTANTS.tmdb.api_url + 'genre/movie/list').
-                    query(function(data) {
-                      $scope.filter.genres = data.genres;
-                    });
-                }]);
+
+    TMDBConfig.get({ api_key: API_CONSTANTS.tmdb.api_key }, function(data) {
+      $scope.image = {
+        base_url: data.images.base_url,
+        backdrop_size: data.images.backdrop_sizes[0]
+      }
+    });
+
+    Movie.trending("tmdb", movies_url).
+      query(function(data) {
+        $scope.movies = data.results;
+        $scope.moviesInGroups = in_groups_of(data.results)
+      });
+
+    Genre.all("tmdb", genres_url).
+      query(function(data) {
+        $scope.filter.genres = data.genres;
+      });
+  }
 
 }());

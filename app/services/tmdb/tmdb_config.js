@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  angular.module('myApp.Services')
+  angular.module('myApp.services')
     .factory('TMDBConfig', TMDBConfiguration);
 
   TMDBConfiguration.$inject = ['$resource', 'API_CONSTANTS']
