@@ -4,7 +4,7 @@
   angular.module('myApp.services')
     .factory('Movie', MovieFactory);
 
-  MovieFactory.$inject = ['$resource', '$rootScope', 'API_CONSTANTS']
+  MovieFactory.$inject = ['$resource', '$rootScope', 'API_CONSTANTS'];
 
   function MovieFactory($resource, $rootScope, API_CONSTANTS) {
     var fetchMovies = function(url, api_key, page) {
@@ -16,12 +16,12 @@
                          query: {
                            method: 'GET'
                          }
-                       })
-    }
+                       });
+    };
     return {
       trending: function(domain, url, page) {
-        return fetchMovies(url, API_CONSTANTS[domain].api_key, page || 1)
+        return fetchMovies(url, API_CONSTANTS[domain].api_key, page || 1);
       }
-    }
+    };
   }
 }());

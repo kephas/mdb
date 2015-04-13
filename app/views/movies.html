@@ -2,11 +2,19 @@
   <section class="col-sm-2">
     <div class="fm-star-rating form-group">
       <label> Sort by Popularity </label>
+<<<<<<< HEAD
         <input type="range" min="0" max="10" step="1" ng-model="search.vote_average">
     </div>
     <section class="form-group" fm-checkbox-list ng-model="filter.genres">
       <label> Sort By Genre </label>
       <div class="checkbox" ng-repeat="(_, genre) in filter.genres">
+=======
+        <fm-rating ng-model="search.vote_average"></fm-rating>
+    </div>
+    <section class="form-group" fm-checkbox-list ng-model="filter.genres">
+      <label> Sort By Genre </label>
+      <div class="checkbox" ng-repeat="(_, genre) in GENRES">
+>>>>>>> added star rating filter
         <label>
           <input type="checkbox" value="{{genre.id}}">{{genre.name}}
         </label>
@@ -21,13 +29,23 @@
     <div ng-repeat="(_, movieList) in moviesInGroups | filter:search" class="row">
       <movie class="col-sm-4" ng-repeat="(_, movie) in movieList">
         <a href="#" target="blank">
-          <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}"/>
+          <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}" data-id="{{movie.id}}"/>
           <div class="info clearfix">
             <span class="pull-left">{{movie.title}}</span>
-            <span class="pull-right">{{movie.vote_average | stars }}</span>
+            <span class="text-center">{{movie.vote_average | stars }}</span>
+            <span class="pull-right">{{movie.vote_average}}</span>
           </div>
         </a>
       </movie>
     </div>
   </section>
 </div>
+
+<nav class="row text-center">
+  <div class="col-sm-6">
+    <a class="btn btn-primary" ng-if="paginate.prevPage" ng-href="#/pages/paginate.prevPage">Prev</a>
+  </div>
+  <div class="col-sm-6">
+    <a class="btn btn-primary" ng-if="paginate.nextPage" ng-href="#/pages/{{paginate.nextPage}}">Next</a>
+  </div>
+</nav>

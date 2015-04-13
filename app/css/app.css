@@ -8,7 +8,8 @@ body {
 }
 
 movie img {
-  width: 100%;
+  height: 166px;
+  width: 296px;
   border-radius: 4px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4)
 }
@@ -39,4 +40,12 @@ movie:hover span {
 
 movie .info {
   padding: 0 10px;
+}
+
+.fm-rating-pointer {
+  cursor: pointer;
+}
+
+.fm-selected {
+  color: #000000;
 }

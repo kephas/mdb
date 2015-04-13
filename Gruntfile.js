@@ -29,6 +29,7 @@ module.exports = function(grunt) {
       server: {
         options: {
           port: 9001,
+          hostname: '0.0.0.0',
           base: 'app/',
           livereload: true
         }
@@ -40,6 +41,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
 
-  grunt.registerTask('serve', ['connect:server', 'watch:dev'])
+  grunt.registerTask('serve', ['connect:server', 'watch:dev']);
   grunt.registerTask('test', ['karma:continuous:start', 'watch:karma']);
 };
