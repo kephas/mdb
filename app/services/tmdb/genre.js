@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  angular.module('myApp.Services').
+  angular.module('myApp.services').
     factory('Genre', Genre);
 
   Genre.$inject = ['$resource', '$rootScope'];

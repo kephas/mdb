@@ -1,6 +1,11 @@
 <div class="row">
   <section class="col-sm-2">
-    <section class="genres">
+    <div class="fm-star-rating form-group">
+      <label> Sort by Popularity </label>
+        <input type="range" min="0" max="10" step="1" ng-model="search.vote_average">
+    </div>
+    <section class="form-group" fm-checkbox-list ng-model="filter.genres">
+      <label> Sort By Genre </label>
       <div class="checkbox" ng-repeat="(_, genre) in filter.genres">
         <label>
           <input type="checkbox" value="{{genre.id}}">{{genre.name}}
@@ -19,7 +24,7 @@
           <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}"/>
           <div class="info clearfix">
             <span class="pull-left">{{movie.title}}</span>
-            <span class="pull-right">{{movie.vote_average}}</span>
+            <span class="pull-right">{{movie.vote_average | stars }}</span>
           </div>
         </a>
       </movie>
