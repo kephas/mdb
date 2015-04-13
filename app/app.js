@@ -15,13 +15,18 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.services',
   'myApp.filters',
+  'myApp.directives',
   'myApp.controllers'
 ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-      when('/:genre?', {
+      when('/:category?', {
         templateUrl: 'views/movies.html',
         controller:  'MoviesCtrl'
+      })
+      .when('/pages/:page_id', {
+        templateUrl: 'views/movies.html',
+        controller: 'MoviesCtrl'
       })
       .otherwise({
         redirectTo: '/'

@@ -9,7 +9,7 @@
 
   function Genre($resource, $rootScope) {
     return {
-      all: function(domain, url) {
+      all: function(url) {
         return $resource(url,
                          {
                            api_key: API_CONSTANTS.tmdb.api_key
@@ -19,19 +19,22 @@
                              method: 'GET'
                            }
                          }
-                        )},
+                        );
+      },
 
-      find: function(domain, url, params) {
-        params = params || {}
-        params["api_key"] = API_CONSTANTS.tmdb.api_key
+      find: function(url, genre_ids, page) {
         return $resource(url,
-                         params,
+                         {
+                           with_genres: genre_ids.join(","),
+                           api_key: API_CONSTANTS.tmdb.api_key,
+                           page: page || 1
+                         },
                          {
                            query: {
                              method: 'GET'
                            }
                          });
       }
-    }
+    };
   }
 }());
