@@ -17,6 +17,7 @@
                     '<li ng-repeat="style in styles" ng-class="style" ng-click="select($index)">' +
                       '{{symbol}}' +
                     '</li>' +
+                    '<li><a ng-click="select(null)">clear</a></li>'+
                   '</ul>'
     };
 
