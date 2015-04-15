@@ -28,6 +28,10 @@ angular.module('myApp', [
         templateUrl: 'views/movies.html',
         controller: 'MoviesCtrl'
       })
+      .when('/movie/:movie_id/reviews', {
+        templateUrl: 'views/review.html',
+        controller: 'ReviewsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

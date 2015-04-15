@@ -21,6 +21,17 @@
     return {
       trending: function(domain, url, page) {
         return fetchMovies(url, API_CONSTANTS[domain].api_key, page || 1);
+      },
+      overview: function(domain, url) {
+        return $resource(url,
+                        {
+                          api_key: API_CONSTANTS[domain].api_key
+                        },
+                        {
+                          query: {
+                            method: 'GET'
+                          }
+                        });
       }
     };
   }

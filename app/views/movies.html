@@ -21,12 +21,12 @@
 
     <div ng-repeat="(_, movieList) in moviesInGroups" class="row">
       <movie class="col-sm-4" ng-repeat="(_, movie) in movieList | filter:search">
-        <a href="#" target="blank">
+        <a href="#/movie/{{movie.id}}/reviews" target="_self">
           <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}" data-id="{{movie.id}}"/>
           <div class="info clearfix">
-            <span class="pull-left">{{movie.title}}</span>
+            <span>{{movie.title}}</span>
             <span>{{movie.vote_average | stars }}</span>
-            <span class="pull-right">{{movie.vote_average}}</span>
+            <span>{{movie.vote_average}}</span>
           </div>
         </a>
       </movie>

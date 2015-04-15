@@ -1,0 +1,41 @@
+<section>
+  <header>
+    <h2>
+      {{movie.overview.original_title}}
+      <small>{{movie.overview.original_language}}</small>
+    </h2>
+  </header>
+  <content class="row">
+    <div class="col-sm-3">
+      <h3>Genres</h3>
+      <ul class="list-unstyled">
+        <li ng-repeat="(_, genre) in movie.overview.genres">
+          {{genre.name}}
+        </li>
+      </ul>
+      <h3>Production</h3>
+      <ul class="list-unstyled">
+        <li ng-repeat="(_, company) in movie.overview.production_companies">
+          {{company.name}}
+        </li>
+      </ul>
+      <h3>Info</h3>
+      {{movie.overview.status}} : <b>{{movie.overview.release_date}}</b>
+    </div>
+    <div class="col-sm-9">
+      <img ng-src="{{image.base_url + image.backdrop_size + (movie.overview.backdrop_path || movie.overview.poster_path)}}" class="img-responsive">
+      <small><strong><i>{{movie.overview.tagline}}</i></strong></small>
+      <p>
+        {{movie.overview.overview}}
+      </p>
+    </div>
+    <div class="clearfix">
+      <div class="pull-left">
+        <a class="btn btn-primary" ng-href="#/movie/{{movie.paginate(-1)}}/reviews">Prev</a>
+      </div>
+      <div class="pull-right">
+        <a class="btn btn-primary" ng-href="#/movie/{{movie.paginate(1)}}/reviews">Next</a>
+      </div>
+    </div>
+  </content>
+</section>

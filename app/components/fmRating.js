@@ -11,12 +11,14 @@
         require: 'ngModel',
         link: link,
         scope: {
-          symbol: '@'
+          symbol: '@',
+          readonly: '@'
         },
         template: '<ul class="list-inline fm-rating-pointer">' +
                     '<li ng-repeat="style in styles" ng-class="style" ng-click="select($index)">' +
                       '{{symbol}}' +
                     '</li>' +
+                    '<li><a ng-click="select(null)">clear</a></li>'+
                   '</ul>'
     };
 
@@ -31,10 +33,12 @@
 
       scope.styles = styles;
       scope.select = function(index) {
-        ngModel.$setViewValue((index == null) ? null : index + 1);
-        ngModel.$modelValue = ngModel.$viewValue + 5;
-        updateSelectedStyles(ngModel.$viewValue - 1);
-
+        // the difference between the viewValue and modelValue
+        // crudely is, the former is the string and the later is value for the model
+        // http://stackoverflow.com/a/19384557/1503615
+        // http://stackoverflow.com/questions/19383812#comment45585259_19385139
+        ngModel.$setViewValue((index == null) ? undefined : index + 1);
+        // ngModel.$modelValue = (+index) + 1;
         updateSelectedStyles(index);
       };
 
