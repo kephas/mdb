@@ -15,7 +15,7 @@
 
      return function(starCount) {
        starCount = Math.floor(starCount);
-       starCount = starCount < 4 ? 1 : (starCount % 5 == 0 ? 5 : starCount % 5 + 1);
+       starCount = starCount < 6 ? 1 : (starCount % 5 == 0 ? 5 : starCount % 5 + 1);
        return ratings[starCount];
      };
    }

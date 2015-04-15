@@ -32,7 +32,7 @@
           <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}" data-id="{{movie.id}}"/>
           <div class="info clearfix">
             <span class="pull-left">{{movie.title}}</span>
-            <span class="text-center">{{movie.vote_average | stars }}</span>
+            <span>{{movie.vote_average | stars }}</span>
             <span class="pull-right">{{movie.vote_average}}</span>
           </div>
         </a>
