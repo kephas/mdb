@@ -32,11 +32,7 @@
       scope.styles = styles;
       scope.select = function(index) {
         ngModel.$setViewValue((index == null) ? null : index + 1);
-        //console.log("before change", ngModel.$modelValue);
-
-        /*to do fix the counter value */
-        ngModel.$modelValue = ngModel.$viewValue;
-        //console.log("after change", ngModel.$modelValue);
+        ngModel.$modelValue = ngModel.$viewValue + 5;
         updateSelectedStyles(ngModel.$viewValue - 1);
 
         updateSelectedStyles(index);
