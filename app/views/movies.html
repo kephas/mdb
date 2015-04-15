@@ -2,19 +2,12 @@
   <section class="col-sm-2">
     <div class="fm-star-rating form-group">
       <label> Sort by Popularity </label>
-<<<<<<< HEAD
-        <input type="range" min="0" max="10" step="1" ng-model="search.vote_average">
-    </div>
-    <section class="form-group" fm-checkbox-list ng-model="filter.genres">
-      <label> Sort By Genre </label>
-      <div class="checkbox" ng-repeat="(_, genre) in filter.genres">
-=======
-        <fm-rating ng-model="search.vote_average"></fm-rating>
+      <!-- <input type="range" min="1" max="10" step="1" ng-model="search.vote_average"> -->
+      <fm-rating ng-model="search.vote_average"></fm-rating>
     </div>
     <section class="form-group" fm-checkbox-list ng-model="filter.genres">
       <label> Sort By Genre </label>
       <div class="checkbox" ng-repeat="(_, genre) in GENRES">
->>>>>>> added star rating filter
         <label>
           <input type="checkbox" value="{{genre.id}}">{{genre.name}}
         </label>
@@ -26,8 +19,8 @@
       <input ng-model="search.title" name="search" placeholder="search movies" class="form-control"/>
     </div>
 
-    <div ng-repeat="(_, movieList) in moviesInGroups | filter:search" class="row">
-      <movie class="col-sm-4" ng-repeat="(_, movie) in movieList">
+    <div ng-repeat="(_, movieList) in moviesInGroups" class="row">
+      <movie class="col-sm-4" ng-repeat="(_, movie) in movieList | filter:search">
         <a href="#" target="blank">
           <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}" data-id="{{movie.id}}"/>
           <div class="info clearfix">
