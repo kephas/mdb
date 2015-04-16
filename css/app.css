@@ -1,0 +1,57 @@
+body {
+  background-color: #444;
+}
+
+.container {
+   margin-top: 60px;
+   color: #fff;
+}
+
+movie img {
+  height: 166px;
+  width: 296px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4)
+}
+
+movie img, movie span {
+  transition: all 500ms ease 0s;
+}
+
+movie .info {
+  position: absolute;
+  top: 40%;
+  text-align: center;
+}
+
+.info span {
+  color: black;
+  font-size: 15px;
+  opacity: 0;
+  padding: 10px;
+}
+
+.info a {
+    text-decoration: none;
+}
+
+movie:hover img {
+    opacity: 0.2;
+}
+
+movie:hover span {
+    opacity: 1;
+}
+
+movie .info {
+  padding: 0 10px;
+}
+
+.fm-rating-pointer {
+  cursor: pointer;
+}
+
+.fm-selected {
+  color: #000000;
+}

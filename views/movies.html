@@ -1,0 +1,44 @@
+<div class="row">
+  <section class="col-sm-2">
+    <div class="fm-star-rating form-group">
+      <label> Sort by Popularity </label>
+      <!-- <input type="range" min="1" max="10" step="1" ng-model="search.vote_average"> -->
+      <fm-rating ng-model="search.vote_average"></fm-rating>
+    </div>
+    <section class="form-group" fm-checkbox-list ng-model="filter.genres">
+      <label> Sort By Genre </label>
+      <div class="checkbox" ng-repeat="(_, genre) in GENRES">
+        <label>
+          <input type="checkbox" value="{{genre.id}}">{{genre.name}}
+        </label>
+      </div>
+    </section>
+  </section>
+  <section class="col-sm-10">
+    <div class="form-group">
+      <input ng-model="search.title" name="search" placeholder="search movies" class="form-control"/>
+    </div>
+
+    <div ng-repeat="(_, movieList) in moviesInGroups" class="row">
+      <movie class="col-sm-4" ng-repeat="(_, movie) in movieList | filter:search">
+        <a href="#/movie/{{movie.id}}/reviews" target="_self">
+          <img ng-src="{{image.base_url + image.backdrop_size + (movie.backdrop_path || movie.poster_path) }}" data-id="{{movie.id}}"/>
+          <div class="info clearfix">
+            <span>{{movie.title}}</span>
+            <span>{{movie.vote_average | stars }}</span>
+            <span>{{movie.vote_average}}</span>
+          </div>
+        </a>
+      </movie>
+    </div>
+  </section>
+</div>
+
+<nav class="row text-center">
+  <div class="col-sm-6">
+    <a class="btn btn-primary" ng-if="paginate.prevPage" ng-href="#/pages/paginate.prevPage">Prev</a>
+  </div>
+  <div class="col-sm-6">
+    <a class="btn btn-primary" ng-if="paginate.nextPage" ng-href="#/pages/{{paginate.nextPage}}">Next</a>
+  </div>
+</nav>
