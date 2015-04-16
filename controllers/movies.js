@@ -32,7 +32,7 @@
           return Math.round(value % 5);
     }
     , config_url = API_CONSTANTS.tmdb.api_url + "configuration"
-    , movies_url = API_CONSTANTS.tmdb.api_url + 'movie/' + ($routeParams.genre || "top_rated")
+    , movies_url = API_CONSTANTS.tmdb.api_url + 'movie/' + ($routeParams.category || "top_rated")
     , genres_url = API_CONSTANTS.tmdb.api_url + 'genre/movie/list'
     , genre_url  = API_CONSTANTS.tmdb.api_url + 'discover/movie';
 
@@ -46,7 +46,8 @@
     });
 
     //since we would like to trigger the change in own way
-    $scope.$watch('filter', fetchMoviesByGenres, true);
+   
+     $scope.$watch('filter', fetchMoviesByGenres, true);
 
     function fetchMoviesByGenres() {
       Genre.find(genre_url, $scope.filter.genres, $scope.filter.page)
