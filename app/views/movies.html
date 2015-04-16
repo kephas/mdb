@@ -34,11 +34,11 @@
   </section>
 </div>
 
-<nav class="row text-center">
-  <div class="col-sm-6">
-    <a class="btn btn-primary" ng-if="paginate.prevPage" ng-href="#/pages/paginate.prevPage">Prev</a>
+<nav class="clearfix">
+  <div class="pull-left">
+    <a class="btn btn-primary" ng-if="paginate.prevPage" ng-href="#/pages/{{paginate.prevPage}}">Prev</a>
   </div>
-  <div class="col-sm-6">
+  <div class="pull-right">
     <a class="btn btn-primary" ng-if="paginate.nextPage" ng-href="#/pages/{{paginate.nextPage}}">Next</a>
   </div>
 </nav>
