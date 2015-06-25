@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  angular.module('myAppControllers', ['myAppServices']).
+  angular.module('myAppControllers', ['myAppServicesMovie', 'myAppServicesConfig']).
     controller('MoviesCtrl', [ '$rootScope', '$scope', '$routeParams', 'Movie', 'Config', function($rootScope, $scope, $routeParams, Movie, Config) {
       $scope.movies  = {}
       $scope.image   = {}
